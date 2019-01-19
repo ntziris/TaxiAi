@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+/*
+nick did a test
+ */
+
 public class Input {
     private SimpleWeightedGraph<Node, DefaultWeightedEdge> graph;
     private Client client;
