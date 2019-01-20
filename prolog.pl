@@ -50,6 +50,21 @@ calculateCost(NodeIdA, NodeIdB, Value) :-
 
 /* ************************************************************* */
 
+/* direction and canMoveFromTo, to figure out if its allowed to move from one node to another */
+direction(LineId, _, _) :-
+    line(LineId, _, _, OneWay, _, _, _, no, no, no, no, no, _, _, _, no, _, _),
+    OneWay = no.
+
+direction(LineId, CounterA, CounterB) :-
+    line(LineId, _, _, OneWay, _, _, _, no, no, no, no, no, _, _, _, no, _, _),
+    OneWay = yes,
+    CounterA < CounterB.
+
+direction(LineId, CounterA, CounterB) :-
+    line(LineId, _, _, OneWay, _, _, _, no, no, no, no, no, _, _, _, no, _, _),
+    OneWay = -1,
+    CounterA > CounterB.
+
 canMoveFromTo(NodeIdA, NodeIdB) :-
     node(_, _, NodeIdA, LineId, CounterA),
     node(_, _, NodeIdB, LineId, CounterB),
