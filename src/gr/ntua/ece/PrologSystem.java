@@ -78,8 +78,8 @@ public class PrologSystem {
         }
     }
 
-    public boolean isQualifiedDriver(int driverID) {
-        String queryString = "isQualifiedDriverForClient(" + driverID + ").";
+    public boolean isDriverQualified(long driverID) {
+        String queryString = "isDriverQualified(" + driverID + ").";
         jipQuery = jip.openSynchronousQuery(parser.parseTerm(queryString));
         if (jipQuery.nextSolution() != null) {
             return true;

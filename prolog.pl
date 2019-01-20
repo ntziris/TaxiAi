@@ -33,3 +33,17 @@ canMoveFromTo(NodeIdA, NodeIdB) :-
     node(_, _, NodeIdA, LineId, CounterA),
     node(_, _, NodeIdB, LineId, CounterB),
     direction(LineId, CounterA, CounterB).
+
+
+/* Client */
+clientSpeaks(Lang) :-
+    client(_, _, _, _, _, _, Lang, _).
+
+
+/* Taxi Driver Ranks */
+
+driverLan(Lang) :-
+
+
+isDriverQualified(DriverId) :-
+    clientSpeaks(Lang),
