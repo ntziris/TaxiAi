@@ -88,7 +88,7 @@ driverAvailable(DriverId) :-
     taxi(_, _, DriverId, yes, _, _, _).
 
 taxiCapacity(DriverId, Capacity) :-
-    taxi(_, _, DriverId, _, Number, _, _).
+    taxi(_, _, DriverId, _, Capacity, _, _).
 
 taxiRating(DriverId, Rating) :-
     taxi(_, _, DriverId, _, _, Rating, _).
