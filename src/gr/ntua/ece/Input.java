@@ -290,7 +290,7 @@ public class Input {
                 incline, waterway, busyway, toll;
 
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(TAXIS_FILE))));
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(LINES_FILE))));
             String readLine;
             String[] split;
 
