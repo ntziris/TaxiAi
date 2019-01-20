@@ -55,12 +55,16 @@ public class Main {
                     "\t\t\t\t</LineStyle> \n" +
                     "\t\t\t</Style> ");
 
-            Double[] distances_vector = new Double[input.getTaxis().size()+1];
+
+
+            ArrayList<Taxi> validTaxis = new ArrayList<>();
             List<Integer> pointers = new ArrayList<>();
 
             for (Taxi taxi : input.getTaxis()) {
                 i++;
-                if (!(prolog.isDriverQualified(taxi.getId()))) continue;
+                if (!(prolog.isDriverQualified(taxi.getId()))) {
+                    continue;
+                }
                 Astar c = new Astar();
 
                 List<Node> list = c.find(graph, taxi.getClosestNode(), currentClient.getClosestNode(), 15);
@@ -68,8 +72,9 @@ public class Main {
                 System.out.println("Taxi No" + i + " Lat: " + taxi.getX() + " Long: " +
                         taxi.getY() + " Cost: " + c.getDistance());
 
-                distances_vector[i] = c.getDistance();
-
+                taxi.setCounter(i);
+                taxi.setMin(c.getDistance());
+                validTaxis.add(taxi);
 
                 if (c.getDistance() == null) {
                     System.out.println("null Taxi" + i);
@@ -107,9 +112,9 @@ public class Main {
             System.out.println("Min cost: " + min);
 
             List<Taxi> allMinTaxis = new ArrayList<>();
-            for (int l = 1; l < distances_vector.length; l++) {
-                if (distances_vector[l].equals(min)) {
-                    pointers.add(l);
+            for (Taxi t : validTaxis) {
+                if (t.getMin() == min) {
+                    pointers.add(t.getCounter());
                 }
             }
 

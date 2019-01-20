@@ -11,6 +11,8 @@ public class Taxi extends Point implements Comparable<Taxi> {
     private Boolean longDistances;
     private String description;
     private Node closestNode;
+    private Double min;
+    private int counter;
 
 
     public Taxi(double x, double y, long id, Boolean isAvailable, int capacity, String[] languages,
@@ -99,6 +101,22 @@ public class Taxi extends Point implements Comparable<Taxi> {
 
     public void setClosestNode(Node closestNode) {
         this.closestNode = closestNode;
+    }
+
+    public Double getMin() {
+        return min;
+    }
+
+    public void setMin(Double min) {
+        this.min = min;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
     public Boolean speaks(String language) {
