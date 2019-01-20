@@ -40,7 +40,7 @@ trafficBottleneck(LineId, CongestionLevel) :-
     findCongestionLevel(Congestion, CongestionLevel).
 %    CongestionLevel is 0.8.
 
-trafficBottleneck(LineId, 0.8)
+trafficBottleneck(_, 0.8)
 
 calculateCost(NodeIdA, NodeIdB, Value) :-
    node(_, _, NodeIdA, LineId, _, _),
