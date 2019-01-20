@@ -1,6 +1,8 @@
 package gr.ntua.ece;
 
-public class Taxi extends Point {
+import org.jetbrains.annotations.NotNull;
+
+public class Taxi extends Point implements Comparable<Taxi> {
     private long id;
     private Boolean isAvailable;
     private int capacity;
@@ -117,5 +119,18 @@ public class Taxi extends Point {
         System.out.println("\tlanguages = " + this.languages);
         System.out.println("\trating = " + this.rating);
         System.out.println("\tdescription = " + this.description);
+    }
+
+    @Override
+    public int compareTo(@NotNull Taxi taxi) {
+        if (this.rating > taxi.getRating()) {
+            return 1;
+        }
+
+        if (this.rating < taxi.getRating()) {
+            return -1;
+        }
+
+        return 0;
     }
 }
