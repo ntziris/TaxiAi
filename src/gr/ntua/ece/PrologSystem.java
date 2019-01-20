@@ -42,12 +42,14 @@ public class PrologSystem {
     }
 
     public boolean canMoveFromTo(Node A, Node B) {
-        double Ax = A.getX();
-        double Ay = A.getY();
-        double Bx = B.getX();
-        double By = B.getY();
+//        double Ax = A.getX();
+//        double Ay = A.getY();
+//        double Bx = B.getX();
+//        double By = B.getY();
+        long nodeIdA = A.getNodeId();
+        long nodeIdB = B.getNodeId();
 
-        String queryString = "canMoveFromTo(" + Ax + "," + Ay + "," + Bx + ","  + By + ").";
+        String queryString = "canMoveFromTo(" + nodeIdA + "," + nodeIdB + ").";
         jipQuery = jip.openSynchronousQuery(parser.parseTerm(queryString));
         if (jipQuery.nextSolution() != null) {
             return true;
