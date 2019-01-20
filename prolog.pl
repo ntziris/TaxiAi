@@ -101,6 +101,9 @@ isDriverQualified(DriverId) :-
     taxiCapacity(DriverId, Capacity),
     Number <= Capacity.
 
+taxiRank(DriverId, Rank) :-
+    taxi(_, _, _, _, _, Rank, _).
+
 
 
 
