@@ -369,7 +369,10 @@ public class Input {
 
                     for (String timePeriod: periods) {
                         schelude = timePeriod.split("=")[0];
-                        bottleneck = timePeriod.split("=1")[1];
+                        System.out.println("roadID: " + roadId);
+                        System.out.println("schelude: " + schelude);
+                        System.out.println("bottleneck: " + timePeriod.split("=")[1]);
+                        bottleneck = timePeriod.split("=")[1];
                         start = Integer.valueOf(schelude.split("-")[0].replace(":", ""));
                         end = Integer.valueOf(schelude.split("-")[1].replace(":", ""));
 
