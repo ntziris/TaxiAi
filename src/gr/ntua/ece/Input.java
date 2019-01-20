@@ -1,6 +1,5 @@
 package gr.ntua.ece;
 
-import com.ugos.jiprolog.engine.JIPQuery;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
@@ -10,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-/*
-nick did a test
- */
 
 public class Input {
     private SimpleWeightedGraph<Node, DefaultWeightedEdge> graph;
@@ -27,6 +23,8 @@ public class Input {
     private static final String NODES_FILE = "nodes.csv";
     private static final String CLIENT_FILE = "client.csv";
     private static final String TAXIS_FILE = "taxis.csv";
+    private static final String LINES_FILE = "lines.csv";
+    private static final String TRAFFIC_FILE = "traffic.csv";
 
     private Input() {
         prolog = PrologSystem.getInstance();
@@ -279,6 +277,25 @@ public class Input {
                 }
             }
         }
+    }
+
+    private void readLines() {
+        BufferedReader reader = null;
+
+        long id;
+        Boolean isHighway;
+        String name;
+        Boolean isOneway;
+        Boolean isLit;
+        int lanes;
+        int maxSpeed;
+        Boolean isRailway;
+
+
+    }
+
+    private void readTraffic() {
+
     }
 
     public Node closestNodeAt (Point p) {
