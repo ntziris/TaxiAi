@@ -12,6 +12,7 @@ public class Astar {
     private Double distance;
 
     private static double heuristic(Node a, Node b){
+        PrologSystem prolog = PrologSystem.getInstance();
         return  a.euclid(b);
     }
 
