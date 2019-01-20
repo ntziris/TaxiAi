@@ -359,32 +359,33 @@ public class Input {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(TRAFFIC_FILE))));
             PrologSystem prolog = PrologSystem.getInstance();
             int roadId, start = 0, end = 0;
-            String name, trafficInfo, line;
+            String name, trafficInfo, readline;
             String schelude, bottleneck;
-            String[] parts = null, periods;
+            String[] split = null, periods;
 
             reader.readLine();
-            while ( (line = reader.readLine()) != null ) {
-                line = replaceEscapedCommas(line);
-                parts = line.split(",");
-                roadId = Integer.valueOf(parts[0]);
+            while ( (readline = reader.readLine()) != null ) {
+                readline = replaceEscapedCommas(readline);
+                split = readline.split(",");
+                roadId = Integer.valueOf(split[0]);
 
-                if (parts.length >= 3 && !parts[2].equals("")) {
-                    name = parts[1];
-                    trafficInfo = parts[2];
+                if (split.length >= 3 && !split[2].equals("")) {
+                    name = split[1];
+                    trafficInfo = split[2];
                     periods = trafficInfo.split("\\|");
 
                     for (String timePeriod: periods) {
                         schelude = timePeriod.split("=")[0];
-                        System.out.println("roadID: " + roadId);
-                        System.out.println("schelude: " + schelude);
-                        System.out.println("bottleneck: " + timePeriod.split("=")[1]);
+   //                     System.out.println("roadID: " + roadId);
+   //                     System.out.println("schelude: " + schelude);
+   //                     System.out.println("bottleneck: " + timePeriod.split("=")[1]);
                         bottleneck = timePeriod.split("=")[1];
                         start = Integer.valueOf(schelude.split("-")[0].replace(":", ""));
                         end = Integer.valueOf(schelude.split("-")[1].replace(":", ""));
 
                         String predicate = "roadTraffic(" + roadId + ", " + start + ", " + end + ", " + bottleneck + ")";
                         prolog.asserta(predicate);
+                        System.out.println(predicate);
                     }
 
                 }
