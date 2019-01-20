@@ -39,6 +39,8 @@ public class Input {
         readNodes();
         readClient();
         readTaxis();
+        readLines();
+        readTraffic();
     }
 
     private void readNodes() {
