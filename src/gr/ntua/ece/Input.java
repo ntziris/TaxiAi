@@ -346,7 +346,51 @@ public class Input {
     }
 
     private void readTraffic() {
-        // lala
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(TRAFFIC_FILE))));
+            PrologSystem prolog = PrologSystem.getInstance();
+            int roadId, start = 0, end = 0;
+            String name, trafficInfo, line;
+            String schelude, bottleneck;
+            String[] parts = null, periods;
+
+            reader.readLine();
+            while ( (line = reader.readLine()) != null ) {
+                parts = line.split(",");
+                roadId = Integer.valueOf(parts[0]);
+
+                if (parts.length >= 3 && !parts[2].equals("")) {
+                    name = parts[1];
+                    trafficInfo = parts[2];
+                    periods = trafficInfo.split("\\|");
+
+                    for (String timePeriod: periods) {
+                        schelude = timePeriod.split("=")[0];
+                        bottleneck = timePeriod.split("=1")[1];
+                        start = Integer.valueOf(schelude.split("-")[0].replace(":", ""));
+                        end = Integer.valueOf(schelude.split("-")[1].replace(":", ""));
+
+                        String predicate = "roadTraffic(" + roadId + ", " + start + ", " + end + ", " + bottleneck + ")";
+                        prolog.asserta(predicate);
+                    }
+
+                }
+
+            }
+
+        } catch (IOException e) {
+            System.err.println("Exception: " + e.toString());
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.err.println("Exception: " + e.toString());
+                }
+            }
+        }
+
     }
 
     public Node closestNodeAt (Point p) {
