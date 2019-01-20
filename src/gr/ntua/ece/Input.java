@@ -270,8 +270,13 @@ public class Input {
 
                 String predicate = "taxi(" + x + ", " + y + ", " + id + ", " + split[3].trim() + ", " + capacity + ", "
                         + rating + ", " + split[7].trim() + ")";
-                System.out.println(predicate);
                 prolog.asserta(predicate);
+//                System.out.println(predicate);
+
+                for (String lang : languages) {
+                    prolog.asserta("taxiSpeaks(" + id + ", " + lang + ")");
+//                    System.out.println("taxiSpeaks(" + id + ", " + lang + ")");
+                }
 
             }
         } catch (IOException e) {
