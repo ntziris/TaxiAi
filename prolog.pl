@@ -34,21 +34,20 @@ findCongestionLevel(low, 0.6).
 trafficBottleneck(LineId, CongestionLevel) :-
     callTime(Time),
     roadTraffic(LineId, BeginTime, EndTime, Congestion),
+%    writeln(Congestion),
     BeginTime =< Time,
     EndTime >= Time,
     findCongestionLevel(Congestion, CongestionLevel).
 %    CongestionLevel is 0.8.
 
+trafficBottleneck(LineId, _)
+
 calculateCost(NodeIdA, NodeIdB, Value) :-
    node(_, _, NodeIdA, LineId, _, _),
    node(_, _, NodeIdB, LineId, _, _),
-  %  writeln(LineId),
-    trafficBottleneck(LineId, CongestionLevel),
-  %  writeln(LineId),
-  %  writeln(CongestionLevel),
-  %  lightSatisfiability(LineId, LightsLevel),
+   trafficBottleneck(LineId, CongestionLevel),
+ %  lightSatisfiability(LineId, LightsLevel),
     Value is CongestionLevel. % * LightsLevel.
-%    Value is 1.
 
 
 
