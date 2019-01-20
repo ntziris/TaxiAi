@@ -6,6 +6,7 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -110,6 +111,13 @@ public class Main {
             }
 
             System.out.println("Min cost: " + min);
+
+            Collections.sort(validTaxis);
+            System.out.println("Available taxis sorted by rating:");
+            for (Taxi t : validTaxis) {
+                System.out.println("Taxi No" + t.getCounter() + ", rating: " + t.getRating());
+            }
+
 
             List<Taxi> allMinTaxis = new ArrayList<>();
             for (Taxi t : validTaxis) {

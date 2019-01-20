@@ -142,11 +142,11 @@ public class Taxi extends Point implements Comparable<Taxi> {
     @Override
     public int compareTo(@NotNull Taxi taxi) {
         if (this.rating > taxi.getRating()) {
-            return 1;
+            return -1;
         }
 
         if (this.rating < taxi.getRating()) {
-            return -1;
+            return 1;
         }
 
         return 0;
