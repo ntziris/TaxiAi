@@ -300,20 +300,20 @@ public class Input {
                 readLine = readLine.replace(",", " , ");
                 split = readLine.split(",");
 
-                for (String s : split) {
-                    s = s.trim();
-                    if (s.length() == 0) {
-                        s = "no";
+                for (int i = 0; i < split.length; i++) {
+                    split[i] = split[i].trim();
+                    if (split[i].length() == 0) {
+                        split[i] = "no";
                     }
                 }
 
-                id = Long.parseLong(split[0].trim());
+                id = Long.parseLong(split[0]);
                 highway = split[1];
                 name = split[2];
                 oneway = split[3];
                 lit = split[4];
-                lanes = (split[5].compareTo("no") == 0) ? 0 : Integer.parseInt(split[5].trim());
-                maxSpeed = (split[6].compareTo("no") == 0) ? 0 : Integer.parseInt(split[6].trim());
+                lanes = (split[5].compareTo("no") == 0) ? 0 : Integer.parseInt(split[5]);
+                maxSpeed = (split[6].compareTo("no") == 0) ? 0 : Integer.parseInt(split[6]);
                 railway = split[7];
                 boundary = split[8];
                 access = split[9];
@@ -329,7 +329,7 @@ public class Input {
                 String predicate = "line(" + id + ", " + highway + ", " + "name" + ", " + oneway + ", " + lit + ", "
                         + lanes + ", " + maxSpeed + ", " + railway + ", " + boundary + ", " + access + ", " + natural
                         + ", " + barrier + ", " + tunnel + ", " + bridge + ", " + incline + ", " + waterway + ", "
-                        + busyway + ", " + toll + ").";
+                        + busyway + ", " + toll + ")";
                 prolog.asserta(predicate);
                 System.out.println(predicate);
 
