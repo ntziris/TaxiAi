@@ -84,7 +84,7 @@ public class Input {
                 Node currNode = new Node(x, y, streetName, nodeId, lineId);
 
                 // ************************************
-                String query_nodes = "node(" + x + ", " + y + ", " + nodeId +  ", " + lineId + ", " + streetName + ", " + counter + ")";
+                String query_nodes = "node(" + x + ", " + y + ", " + nodeId +  ", " + lineId + ", " + "StreetName" + ", " + counter + ")";
                 prolog.asserta(query_nodes);
                 counter++;
 //                System.out.println("test1: ");
