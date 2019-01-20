@@ -57,12 +57,14 @@ public class PrologSystem {
     }
 
     public double calculateCost(Node A, Node B) {
-        double Ax = A.getX();
-        double Ay = A.getY();
-        double Bx = B.getX();
-        double By = B.getY();
+//        double Ax = A.getX();
+//        double Ay = A.getY();
+//        double Bx = B.getX();
+//        double By = B.getY();
+        long nodeIdA = A.getNodeId();
+        long nodeIdB = B.getNodeId();
 
-        String queryString = "calculateCost(" + Ax + "," + Ay + "," + Bx + ","  + By + ", Value).";
+        String queryString = "calculateCost(" + nodeIdA + "," + nodeIdB + ", Value).";
         jipQuery = jip.openSynchronousQuery(parser.parseTerm(queryString));
         term = jipQuery.nextSolution();
         if (term != null) {

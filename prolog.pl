@@ -10,3 +10,7 @@ calculateCost(Ax, Ay, Bx, By, Value) :-
 
 
 
+canMoveFromTo(NodeIdA, NodeIdB) :-
+    node(_, _, NodeIdA, LineId, CounterA),
+    node(_, _, NodeIdB, LineId, CounterB),
+    direction(LineId, CounterA, CounterB).
