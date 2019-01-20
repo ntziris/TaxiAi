@@ -199,7 +199,7 @@ public class Input {
 
             String query_client = "client(" + x + ", " + y + ", " + destX +
                     ", " + destY + ", " + this.client.timeString() + ", " + persons +
-                    ", " + lang + ", " + luggage + ").";
+                    ", " + lang + ", " + luggage + ")";
             prolog.asserta(query_client);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -267,6 +267,11 @@ public class Input {
                 /* Set the Taxi.closestNode to the closest node to the taxi from the graph */
                 taxi.setClosestNode(closestNodeAt(taxi));
                 this.taxis.add(taxi);
+
+                String predicate = "taxi(" + x + ", " + y + ", " + id + ", " + split[3].trim() + ", " + capacity + ", "
+                        + rating + ", " + split[7].trim() + ", " + description + ")";
+                prolog.asserta(predicate);
+                System.out.println(predicate);
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -331,7 +336,7 @@ public class Input {
                         + ", " + barrier + ", " + tunnel + ", " + bridge + ", " + incline + ", " + waterway + ", "
                         + busyway + ", " + toll + ")";
                 prolog.asserta(predicate);
-                System.out.println(predicate);
+//                System.out.println(predicate);
 
             }
         } catch (IOException e) {
