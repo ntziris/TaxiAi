@@ -15,6 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         Input input = Input.getInstance();
+        PrologSystem prolog = PrologSystem.getInstance();
+
         SimpleWeightedGraph<Node, DefaultWeightedEdge> graph = input.getGraph();
         int i = 0;
         int pointer = 0;
@@ -58,6 +60,7 @@ public class Main {
 
             for (Taxi taxi : input.getTaxis()) {
                 i++;
+                if (!prolog.isDriverQualified(taxi.getId())) continue;
                 Astar c = new Astar();
 
                 List<Node> list = c.find(graph, taxi.getClosestNode(), currentClient.getClosestNode(), 15);
