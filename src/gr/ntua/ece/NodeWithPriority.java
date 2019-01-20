@@ -22,4 +22,8 @@ public class NodeWithPriority implements Comparator<NodeWithPriority>
     public Node getNode() {
         return x;
     }
+
+    public double getCost() {
+        return cost;
+    }
 }
