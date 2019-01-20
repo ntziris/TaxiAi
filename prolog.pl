@@ -38,12 +38,13 @@ trafficBottleneck(LineId, CongestionLevel) :-
     findCongestionLevel(Congestion, CongestionLevel).
 
 calculateCost(NodeIdA, NodeIdB, Value) :-
-   node(_, _, NodeIdA, LineId, _, _),
-   node(_, _, NodeIdB, LineId, _, _),
+    node(_, _, NodeIdA, LineId, _, _),
+    node(_, _, NodeIdB, LineId, _, _),
     writeln(LineId),
     trafficBottleneck(LineId, CongestionLevel),
+    writeln(CongestionLevel),
     lightSatisfiability(LineId, LightsLevel),
-    Value is CongestionLevel. % * LightsLevel.
+    Value is CongestionLevel * LightsLevel.
 %    Value is 1.
 
 

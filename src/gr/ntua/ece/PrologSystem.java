@@ -67,7 +67,7 @@ public class PrologSystem {
         long nodeIdB = B.getNodeId();
 
         String queryString = "calculateCost(" + nodeIdA + ", " + nodeIdB + ", Value).";
-        System.out.println(queryString);
+        //System.out.println(queryString);
         jipQuery = jip.openSynchronousQuery(parser.parseTerm(queryString));
         term = jipQuery.nextSolution();
         if (term != null) {

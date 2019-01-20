@@ -37,10 +37,15 @@ public class Input {
 
     public void readInput() {
         readLines();
-        readNodes();
-        readClient();
-        readTaxis();
+        System.out.println("read lines");
         readTraffic();
+        System.out.println("red traffic");
+        readNodes();
+        System.out.println("read nodes");
+        readClient();
+        System.out.println("read client");
+        readTaxis();
+        System.out.println("read taxis");
     }
 
     private void readNodes() {
@@ -363,9 +368,9 @@ public class Input {
 
     private void readTraffic() {
         BufferedReader reader = null;
+        System.out.println("i am inside readtraffic");
         try {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(TRAFFIC_FILE))));
-            PrologSystem prolog = PrologSystem.getInstance();
             int roadId, start = 0, end = 0;
             String name, trafficInfo, readline;
             String schelude, bottleneck;
@@ -393,7 +398,7 @@ public class Input {
 
                         String predicate = "roadTraffic(" + roadId + ", " + start + ", " + end + ", " + bottleneck + ")";
                         prolog.asserta(predicate);
-  //                      System.out.println(predicate);
+                        System.out.println(predicate);
                     }
 
                 }
