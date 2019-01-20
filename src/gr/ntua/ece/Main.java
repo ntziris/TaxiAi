@@ -60,7 +60,7 @@ public class Main {
 
             for (Taxi taxi : input.getTaxis()) {
                 i++;
-                if (!prolog.isDriverQualified(taxi.getId())) continue;
+                if (!(prolog.isDriverQualified(taxi.getId()))) continue;
                 Astar c = new Astar();
 
                 List<Node> list = c.find(graph, taxi.getClosestNode(), currentClient.getClosestNode(), 15);

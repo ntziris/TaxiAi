@@ -56,7 +56,8 @@ public class Client extends Point {
     }
 
     public String timeString() {
-        return TIME_FORMAT.format(time);
+        SimpleDateFormat f = new SimpleDateFormat("hhmm");
+        return f.format(time);
     }
 
     public void setTime(Date time) {
