@@ -96,7 +96,7 @@ public class Input {
 
                 // *********
 
-                String belongsTo = "belongsTo(" + nodeId + ", " + lineId + ").";
+                String belongsTo = "belongsTo(" + nodeId + ", " + lineId + ")";
                 prolog.asserta(belongsTo);
 
                 // *******************************************************

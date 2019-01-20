@@ -4,7 +4,8 @@
 
 /* ************************************************************* */
 
-
+CallTime(Time) :-
+    client(_, _, _, _, Time, _, _, _).
 
 isNight(Time) :-
     Time >= 2000,
@@ -31,7 +32,7 @@ findCongestionLevel(low, 0.6).
 
 trafficBottleneck(LineId, CongestionLevel) :-
     CallTime(Time),
-    RoadTraffic(LineId, BeginTime, EndTime, Congestion),
+    roadTraffic(LineId, BeginTime, EndTime, Congestion),
     BeginTime =< Time,
     EndTime >= Time,
     findCongestionLevel(Congestion, CongestionLevel).
