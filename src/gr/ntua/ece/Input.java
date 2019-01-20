@@ -36,16 +36,18 @@ public class Input {
     }
 
     public void readInput() {
+        readClient();
+        System.out.println("read client");
         readLines();
         System.out.println("read lines");
         readTraffic();
         System.out.println("red traffic");
         readNodes();
         System.out.println("read nodes");
-        readClient();
-        System.out.println("read client");
         readTaxis();
         System.out.println("read taxis");
+        /* Set the Client.closestNode to the closest node to the client from the graph */
+        this.client.setClosestNode(closestNodeAt(this.client));
     }
 
     private void readNodes() {
@@ -206,9 +208,10 @@ public class Input {
             this.client = new Client(x, y, destX, destY, time, persons, lang, luggage);
 
             String query_client = "client(" + x + ", " + y + ", " + destX +
-                    ", " + destY + ", " + this.client.timeString() + ", " + persons +
+                    ", " + destY + ", " + split[4].trim().replace(":", "") + ", " + persons +
                     ", " + lang + ", " + luggage + ")";
             prolog.asserta(query_client);
+            System.out.println(query_client);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } finally {
@@ -220,9 +223,6 @@ public class Input {
                 }
             }
         }
-
-        /* Set the Client.closestNode to the closest node to the client from the graph */
-        this.client.setClosestNode(closestNodeAt(this.client));
     }
 
     /* Read the Taxi Drivers from the file */
