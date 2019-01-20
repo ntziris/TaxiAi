@@ -296,6 +296,8 @@ public class Input {
 
             reader.readLine(); // skip the header readLine
             while ((readLine = reader.readLine()) != null) {
+                readLine = replaceEscapedCommas(readLine);
+                readLine = readLine.replace(",", " , ");
                 split = readLine.split(",");
 
                 for (String s : split) {
@@ -305,13 +307,13 @@ public class Input {
                     }
                 }
 
-                id = Long.parseLong(split[0]);
+                id = Long.parseLong(split[0].trim());
                 highway = split[1];
                 name = split[2];
                 oneway = split[3];
                 lit = split[4];
-                lanes = (split[5].compareTo("no") == 0) ? 0 : Integer.parseInt(split[5]);
-                maxSpeed = (split[6].compareTo("no") == 0) ? 0 : Integer.parseInt(split[6]);
+                lanes = (split[5].compareTo("no") == 0) ? 0 : Integer.parseInt(split[5].trim());
+                maxSpeed = (split[6].compareTo("no") == 0) ? 0 : Integer.parseInt(split[6].trim());
                 railway = split[7];
                 boundary = split[8];
                 access = split[9];
@@ -324,7 +326,7 @@ public class Input {
                 busyway = split[16];
                 toll = split[17];
 
-                String predicate = "line(" + id + ", " + highway + ", " + name + ", " + oneway + ", " + lit + ", "
+                String predicate = "line(" + id + ", " + highway + ", " + "name" + ", " + oneway + ", " + lit + ", "
                         + lanes + ", " + maxSpeed + ", " + railway + ", " + boundary + ", " + access + ", " + natural
                         + ", " + barrier + ", " + tunnel + ", " + bridge + ", " + incline + ", " + waterway + ", "
                         + busyway + ", " + toll + ").";
@@ -404,6 +406,25 @@ public class Input {
             }
         }
         return tmp;
+    }
+
+    // Works only if there are not escaped quotes in quotes
+    private static String replaceEscapedCommas(String line) {
+        if (line.contains("\"")) {
+            String[] chars = line.split("");
+            int index;
+            boolean replaceCommas = false;
+            for (index = 0; index < chars.length; index++) {
+                if (chars[index].equals("\"")) {
+                    replaceCommas = !replaceCommas;
+                }
+                if (chars[index].equals(",") && replaceCommas) {
+                    chars[index] = " "; //Replace with empty space
+                }
+            }
+            line = String.join("", chars);
+        }
+        return line;
     }
 
     public SimpleWeightedGraph<Node, DefaultWeightedEdge> getGraph() {
