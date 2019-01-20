@@ -5,14 +5,11 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-
-// test me pericles
+import java.util.*;
 
 public class Main {
+
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Input input = Input.getInstance();
@@ -116,6 +113,24 @@ public class Main {
             System.out.println("Available taxis sorted by rating:");
             for (Taxi t : validTaxis) {
                 System.out.println("Taxi No" + t.getCounter() + ", rating: " + t.getRating());
+            }
+
+            System.out.println("Please select taxi by its number: ");
+            int choice = scanner.nextInt();
+
+            Taxi chosenTaxi = null;
+            for (Taxi t : validTaxis) {
+                if (t.getCounter() == choice) {
+                    chosenTaxi = t;
+                }
+            }
+
+            if (chosenTaxi != null) {
+                Astar c = new Astar();
+                List<Node> list = c.find(graph, chosenTaxi.getClosestNode(), currentClient.getClosestNodeToDest(), 15);
+                System.out.println("Min distance to destination = " + c.getDistance());
+            } else {
+                System.out.println("Invalid taxi choice.");
             }
 
 

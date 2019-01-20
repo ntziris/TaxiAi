@@ -48,6 +48,9 @@ public class Input {
         System.out.println("read taxis");
         /* Set the Client.closestNode to the closest node to the client from the graph */
         this.client.setClosestNode(closestNodeAt(this.client));
+        /* Set the Client.closestNodeToDest */
+        Point pDest = new Point(this.client.getDestX(), this.client.getDestY());
+        this.client.setClosestNodeToDest(closestNodeAt(pDest));
     }
 
     private void readNodes() {

@@ -11,6 +11,7 @@ public class Client extends Point {
     private String lang;
     private int luggage;
     private Node closestNode;
+    private Node closestNodeToDest;
     public static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat ("hh:mm");
 
     public Client(double x, double y, double destX, double destY,
@@ -94,6 +95,14 @@ public class Client extends Point {
 
     public void setClosestNode(Node closestNode) {
         this.closestNode = closestNode;
+    }
+
+    public Node getClosestNodeToDest() {
+        return closestNodeToDest;
+    }
+
+    public void setClosestNodeToDest(Node closestNodeToDest) {
+        this.closestNodeToDest = closestNodeToDest;
     }
 
     @Override
