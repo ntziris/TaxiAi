@@ -13,7 +13,9 @@ public class Astar {
 
     private static double heuristic(Node a, Node b){
         PrologSystem prolog = PrologSystem.getInstance();
-        return  a.euclid(b);
+        Double result = prolog.query("Cost()");
+        return result * a.euclid((b));
+        //        return  a.euclid(b);
     }
 
     public List<Node> find(SimpleWeightedGraph<Node, DefaultWeightedEdge> G, Node s, Node e, long BeamSize){
