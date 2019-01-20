@@ -87,6 +87,7 @@ public class Input {
                 String query_nodes = "node(" + x + ", " + y + ", " + nodeId +  ", " + lineId + ", " + "StreetName" + ", " + counter + ")";
                 prolog.asserta(query_nodes);
                 counter++;
+//                System.out.println(query_nodes);
 //                System.out.println("test1: ");
                 // ********
 //                Boolean result = prolog.query("node(" + x + ", " + y + ", " + nodeId+ ").");
