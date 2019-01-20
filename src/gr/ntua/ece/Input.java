@@ -36,10 +36,10 @@ public class Input {
     }
 
     public void readInput() {
+        readLines();
         readNodes();
         readClient();
         readTaxis();
-        readLines();
         readTraffic();
     }
 

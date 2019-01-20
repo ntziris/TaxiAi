@@ -29,7 +29,17 @@ public class Astar {
         while (!queue.isEmpty()) {
             current = (queue.removeFirst()).getNode();
             if(current.equals(e)) break;
-            Set<DefaultWeightedEdge> neighbours = G.edgesOf(current);
+
+            ArrayList<DefaultWeightedEdge> neighbours = new ArrayList<>();
+
+            for (DefaultWeightedEdge edge : G.edgesOf(current)) {
+                Node next = G.getEdgeTarget(edge);
+                if (!prolog.canMoveFromTo(current, next)) {
+                    neighbours.add(edge);
+                }
+            }
+
+//            Set<DefaultWeightedEdge> neighbours = G.edgesOf(current);
             Iterator<DefaultWeightedEdge> iter = neighbours.iterator();
 
             while (iter.hasNext()) {
@@ -40,7 +50,6 @@ public class Astar {
                     next = G.getEdgeSource(ed);
                 }
 
-                //if (!prolog.canMoveFromTo(current, next)) continue;
 
                 double newDistance = dist.get(current) + G.getEdgeWeight(G.getEdge(current, next));
                 if (!dist.containsKey(next) || newDistance < dist.get(next)) {
