@@ -284,8 +284,31 @@ public class Input {
 
         long id;
         int lanes, maxSpeed;
-        String line, highway, name, oneway, boundary, access, natural, barrier,
-                incline, waterway, busway, lit, railway, tunnel, bridge, toll;
+        String highway, name, oneway, lit, railway, boundary, access, natural, barrier, tunnel, bridge,
+                incline, waterway, busyway, toll;
+
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(TAXIS_FILE))));
+            String readLine;
+            String[] split;
+
+            reader.readLine(); // skip the header readLine
+            while ((readLine = reader.readLine()) != null) {
+                // read the lines...
+
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                }
+            }
+        }
+
 
 
     }
