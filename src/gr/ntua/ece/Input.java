@@ -294,7 +294,39 @@ public class Input {
 
             reader.readLine(); // skip the header readLine
             while ((readLine = reader.readLine()) != null) {
-                // read the lines...
+                split = readLine.split(",");
+
+                for (String s : split) {
+                    s = s.trim();
+                    if (s.length() == 0) {
+                        s = "no";
+                    }
+                }
+
+                id = Long.parseLong(split[0]);
+                highway = split[1];
+                name = split[2];
+                oneway = split[3];
+                lit = split[4];
+                lanes = (split[5].compareTo("no") == 0) ? 0 : Integer.parseInt(split[5]);
+                maxSpeed = (split[6].compareTo("no") == 0) ? 0 : Integer.parseInt(split[6]);
+                railway = split[7];
+                boundary = split[8];
+                access = split[9];
+                natural = split[10];
+                barrier = split[11];
+                tunnel = split[12];
+                bridge = split[13];
+                incline = split[14];
+                waterway = split[15];
+                busyway = split[16];
+                toll = split[17];
+
+                String predicate = "line(" + id + ", " + highway + ", " + name + ", " + oneway + ", " + lit + ", "
+                        + lanes + ", " + maxSpeed + ", " + railway + ", " + boundary + ", " + access + ", " + natural
+                        + ", " + barrier + ", " + tunnel + ", " + bridge + ", " + incline + ", " + waterway + ", "
+                        + busyway + ", " + toll + ").";
+                prolog.asserta(predicate);
 
             }
         } catch (IOException e) {
@@ -308,9 +340,6 @@ public class Input {
                 }
             }
         }
-
-
-
     }
 
     private void readTraffic() {
