@@ -49,7 +49,7 @@ isDriverQualified(DriverId) :-
     taxiCapacity(DriverId, Capacity),
     Number <= Capacity,
     clientLuggage(Luggage),
-    
+
 
 
 
