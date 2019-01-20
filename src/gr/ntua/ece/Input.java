@@ -321,7 +321,7 @@ public class Input {
                 barrier = split[11];
                 tunnel = split[12];
                 bridge = split[13];
-                incline = split[14];
+                incline = split[14].replace('%', ' ');
                 waterway = split[15];
                 busyway = split[16];
                 toll = split[17];
