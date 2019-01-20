@@ -15,6 +15,10 @@ calculateCost(Ax, Ay, Bx, By, Value) :-
 
 
 /* direction and canMoveFromTo, to figure out if its allowed to move from one node to another */
+direction(LineId, _, _) :-
+    line(LineId, _, _, OneWay, _, _, _, no, no, no, no, no, _, _, _, no, _, _),
+    OneWay = no.
+
 direction(LineId, CounterA, CounterB) :-
     line(LineId, _, _, OneWay, _, _, _, no, no, no, no, no, _, _, _, no, _, _),
     OneWay = yes,
