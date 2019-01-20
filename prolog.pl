@@ -99,7 +99,7 @@ isDriverQualified(DriverId) :-
     driverAvailable(DriverId),
     clientPassengers(Number),
     taxiCapacity(DriverId, Capacity),
-    Number <= Capacity.
+    Number =< Capacity.
 
 taxiRank(DriverId, Rank) :-
     taxi(_, _, _, _, _, Rank, _).
