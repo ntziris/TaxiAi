@@ -4,7 +4,7 @@
 
 /* ************************************************************* */
 
-CallTime(Time) :-
+callTime(Time) :-
     client(_, _, _, _, Time, _, _, _).
 
 isNight(Time) :-
@@ -19,7 +19,7 @@ hasLights(LineId, Answer) :-
     lines(LineId, _, _, _, Answer, _, _, _, _, _, _, _, _, _, _, _, _, _).
 
 lightSatisfiability(LineId, lightsLevel) :-
-    CallTime(Time),
+    callTime(Time),
     isNight(Time),
     hasLights(LineId, yes),
     lightsLevel = 0.8.
@@ -31,7 +31,7 @@ findCongestionLevel(medium, 0.8).
 findCongestionLevel(low, 0.6).
 
 trafficBottleneck(LineId, CongestionLevel) :-
-    CallTime(Time),
+    callTime(Time),
     roadTraffic(LineId, BeginTime, EndTime, Congestion),
     BeginTime =< Time,
     EndTime >= Time,
