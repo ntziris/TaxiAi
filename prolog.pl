@@ -39,11 +39,32 @@ canMoveFromTo(NodeIdA, NodeIdB) :-
 clientSpeaks(Lang) :-
     client(_, _, _, _, _, _, Lang, _).
 
+clientPassengers(Number) :-
+    client(_, _, _, _, _, Number, _, _).
 
-/* Taxi Driver Ranks */
+clientLuggage(Number) :-
+    client(_, _, _, _, _, _, _, _, Number).
 
-driverLan(Lang) :-
 
+/* Taxi Driver and Ranking */
+driverAvailable(DriverId) :-
+    taxi(_, _, DriverId, yes, _, _, _).
+
+taxiCapacity(DriverId, Capacity) :-
+    taxi(_, _, DriverId, _, Number, _, _).
+
+taxiRating(DriverId, Rating) :-
+    taxi(_, _, DriverId, _, _, Rating, _).
 
 isDriverQualified(DriverId) :-
     clientSpeaks(Lang),
+    taxiSpeaks(DriverId, Lang),
+    driverAvailable(DriverId),
+    clientPassengers(Number),
+    taxiCapacity(DriverId, Capacity),
+    Number <= Capacity,
+    clientLuggage(Luggage),
+    
+
+
+
