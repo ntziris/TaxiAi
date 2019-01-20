@@ -261,7 +261,7 @@ public class Input {
                 languages = split[5].trim().split("\\|");
                 rating = Double.parseDouble(split[6].trim());
                 longDistances = (split[7].trim().compareTo("yes") == 0);
-                description = String.valueOf(split[8].trim());
+                description = split[8].trim();
                 Taxi taxi = new Taxi(x,y, id, isAvailable, capacity, languages, rating, longDistances, description);
 
                 /* Set the Taxi.closestNode to the closest node to the taxi from the graph */
@@ -269,9 +269,10 @@ public class Input {
                 this.taxis.add(taxi);
 
                 String predicate = "taxi(" + x + ", " + y + ", " + id + ", " + split[3].trim() + ", " + capacity + ", "
-                        + rating + ", " + split[7].trim() + ", " + description + ")";
-                prolog.asserta(predicate);
+                        + rating + ", " + split[7].trim() + ")";
                 System.out.println(predicate);
+                prolog.asserta(predicate);
+
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
