@@ -85,12 +85,12 @@ public class Input {
                 String query_nodes = "node(" + x + ", " + y + ", " + nodeId+ ").";
                 prolog.asserta(query_nodes);
 
-                System.out.println("test1: ");
+//                System.out.println("test1: ");
                 // ********
-                Boolean result = prolog.query("node(" + x + ", " + y + ", " + nodeId+ ").");
-                if (result) {
-                    System.out.println("yes");
-                }
+//                Boolean result = prolog.query("node(" + x + ", " + y + ", " + nodeId+ ").");
+//                if (result) {
+//                    System.out.println("yes");
+//                }
 
                 // *********
 
@@ -327,6 +327,7 @@ public class Input {
                         + ", " + barrier + ", " + tunnel + ", " + bridge + ", " + incline + ", " + waterway + ", "
                         + busyway + ", " + toll + ").";
                 prolog.asserta(predicate);
+                System.out.println(predicate);
 
             }
         } catch (IOException e) {
