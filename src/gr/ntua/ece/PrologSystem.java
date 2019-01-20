@@ -67,8 +67,7 @@ public class PrologSystem {
         term = jipQuery.nextSolution();
         if (term != null) {
             String costString = term.getVariablesTable().get("Value").toString();
-            double cost = Double.parseDouble(costString);
-            return cost;
+            return Double.parseDouble(costString);
         } else {
             System.out.println("Error with factor calculation.");
             return -1;
