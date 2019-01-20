@@ -13,7 +13,7 @@ isNight(Time) :-
 
 isNight(Time) :-
     Time >= 0000,
-    Time <= 0600.
+    Time =< 0600.
 
 hasLights(LineId, Answer) :-
     lines(LineId, _, _, _, Answer, _, _, _, _, _, _, _, _, _, _, _, _, _).
