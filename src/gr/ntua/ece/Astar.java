@@ -36,11 +36,11 @@ public class Astar {
                 DefaultWeightedEdge ed = iter.next();
                 Node next = G.getEdgeTarget(ed);
 
-                if (!prolog.canMoveFromTo(current, next)) continue;
-
                 if (next.equals(current)) {
                     next = G.getEdgeSource(ed);
                 }
+
+                //if (!prolog.canMoveFromTo(current, next)) continue;
 
                 double newDistance = dist.get(current) + G.getEdgeWeight(G.getEdge(current, next));
                 if (!dist.containsKey(next) || newDistance < dist.get(next)) {
