@@ -390,7 +390,7 @@ public class Input {
 
                         String predicate = "roadTraffic(" + roadId + ", " + start + ", " + end + ", " + bottleneck + ")";
                         prolog.asserta(predicate);
-                        System.out.println(predicate);
+  //                      System.out.println(predicate);
                     }
 
                 }
