@@ -36,16 +36,12 @@ public class Input {
     }
 
     public void readInput() {
+        System.out.println("Constructing Map. Please wait...");
         readClient();
-        System.out.println("read client");
         readLines();
-        System.out.println("read lines");
         readTraffic();
-        System.out.println("red traffic");
         readNodes();
-        System.out.println("read nodes");
         readTaxis();
-        System.out.println("read taxis");
         /* Set the Client.closestNode to the closest node to the client from the graph */
         this.client.setClosestNode(closestNodeAt(this.client));
         /* Set the Client.closestNodeToDest */
@@ -97,15 +93,6 @@ public class Input {
                 String query_nodes = "node(" + x + ", " + y + ", " + nodeId +  ", " + lineId + ", " + "StreetName" + ", " + counter + ")";
                 prolog.asserta(query_nodes);
                 counter++;
-//                System.out.println(query_nodes);
-//                System.out.println("test1: ");
-                // ********
-//                Boolean result = prolog.query("node(" + x + ", " + y + ", " + nodeId+ ").");
-//                if (result) {
-//                    System.out.println("yes");
-//                }
-
-                // *********
 
                 String belongsTo = "belongsTo(" + nodeId + ", " + lineId + ")";
                 prolog.asserta(belongsTo);
@@ -214,7 +201,6 @@ public class Input {
                     ", " + destY + ", " + split[4].trim().replace(":", "") + ", " + persons +
                     ", " + lang + ", " + luggage + ")";
             prolog.asserta(query_client);
-            System.out.println(query_client);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } finally {
@@ -282,11 +268,9 @@ public class Input {
                 String predicate = "taxi(" + x + ", " + y + ", " + id + ", " + split[3].trim() + ", " + capacity + ", "
                         + rating + ", " + split[7].trim() + ")";
                 prolog.asserta(predicate);
-//                System.out.println(predicate);
 
                 for (String lang : languages) {
                     prolog.asserta("taxiSpeaks(" + id + ", " + lang + ")");
-//                    System.out.println("taxiSpeaks(" + id + ", " + lang + ")");
                 }
 
             }
@@ -353,7 +337,6 @@ public class Input {
                         + ", " + barrier + ", " + tunnel + ", " + bridge + ", " + incline + ", " + waterway + ", "
                         + busyway + ", " + toll + ")";
                 prolog.asserta(predicate);
-//                System.out.println(predicate);
 
             }
         } catch (IOException e) {
@@ -371,7 +354,6 @@ public class Input {
 
     private void readTraffic() {
         BufferedReader reader = null;
-        System.out.println("i am inside readtraffic");
         try {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(TRAFFIC_FILE))));
             int roadId, start = 0, end = 0;
@@ -392,16 +374,12 @@ public class Input {
 
                     for (String timePeriod: periods) {
                         schelude = timePeriod.split("=")[0];
-   //                     System.out.println("roadID: " + roadId);
-   //                     System.out.println("schelude: " + schelude);
-   //                     System.out.println("bottleneck: " + timePeriod.split("=")[1]);
                         bottleneck = timePeriod.split("=")[1];
                         start = Integer.valueOf(schelude.split("-")[0].replace(":", ""));
                         end = Integer.valueOf(schelude.split("-")[1].replace(":", ""));
 
                         String predicate = "roadTraffic(" + roadId + ", " + start + ", " + end + ", " + bottleneck + ")";
                         prolog.asserta(predicate);
-                        System.out.println(predicate);
                     }
 
                 }
