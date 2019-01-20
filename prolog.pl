@@ -47,8 +47,8 @@ isDriverQualified(DriverId) :-
     driverAvailable(DriverId),
     clientPassengers(Number),
     taxiCapacity(DriverId, Capacity),
-    Number <= Capacity,
-    clientLuggage(Luggage),
+    Number <= Capacity.
+
 
 
 
