@@ -1,7 +1,6 @@
 package gr.ntua.ece;
 
 import java.util.HashMap;
-import org.jgrapht.*;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import java.util.*;
 import com.google.common.collect.*;
@@ -10,10 +9,10 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 public class Astar {
 
     private Double distance;
+    private PrologSystem prolog = PrologSystem.getInstance();
 
-    private static double heuristic(Node a, Node b){
-        PrologSystem prolog = PrologSystem.getInstance();
-        Double result = prolog.calculateCost(a, b);
+    private double heuristic(Node a, Node b){
+        double result = prolog.calculateCost(a, b);
         return result * a.euclid((b));
         //        return  a.euclid(b);
     }
@@ -36,6 +35,9 @@ public class Astar {
             while (iter.hasNext()) {
                 DefaultWeightedEdge ed = iter.next();
                 Node next = G.getEdgeTarget(ed);
+
+                if (!prolog.canMoveFromTo(current, next)) continue;
+
                 if (next.equals(current)) {
                     next = G.getEdgeSource(ed);
                 }
@@ -43,7 +45,7 @@ public class Astar {
                 double newDistance = dist.get(current) + G.getEdgeWeight(G.getEdge(current, next));
                 if (!dist.containsKey(next) || newDistance < dist.get(next)) {
                     double priority = newDistance + heuristic(next, e);
-                    if (BeamSize <= queue.size() && priority < queue.peekLast().cost) {
+                    if (BeamSize <= queue.size() && priority < queue.peekLast().getCost()) {
                         queue.removeLast();
                         from.put(next, current);
                         dist.put(next, newDistance);
