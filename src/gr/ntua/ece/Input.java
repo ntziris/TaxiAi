@@ -364,6 +364,7 @@ public class Input {
 
             reader.readLine();
             while ( (line = reader.readLine()) != null ) {
+                line = replaceEscapedCommas(line);
                 parts = line.split(",");
                 roadId = Integer.valueOf(parts[0]);
 
