@@ -283,13 +283,9 @@ public class Input {
         BufferedReader reader = null;
 
         long id;
-        Boolean isHighway;
-        String name;
-        Boolean isOneway;
-        Boolean isLit;
-        int lanes;
-        int maxSpeed;
-        Boolean isRailway;
+        int lanes, maxSpeed;
+        String line, highway, name, oneway, boundary, access, natural, barrier,
+                incline, waterway, busway, lit, railway, tunnel, bridge, toll;
 
 
     }
