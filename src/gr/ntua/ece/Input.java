@@ -295,7 +295,7 @@ public class Input {
     }
 
     private void readTraffic() {
-
+        // lala
     }
 
     public Node closestNodeAt (Point p) {
