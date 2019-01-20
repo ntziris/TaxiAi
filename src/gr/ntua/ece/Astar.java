@@ -13,7 +13,7 @@ public class Astar {
 
     private static double heuristic(Node a, Node b){
         PrologSystem prolog = PrologSystem.getInstance();
-        Double result = prolog.query("Cost()");
+        Double result = prolog.calculateCost(a, b);
         return result * a.euclid((b));
         //        return  a.euclid(b);
     }

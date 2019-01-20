@@ -56,19 +56,19 @@ public class PrologSystem {
         }
     }
 
-    public double calculateFactor(Node A, Node B) {
+    public double calculateCost(Node A, Node B) {
         double Ax = A.getX();
         double Ay = A.getY();
         double Bx = B.getX();
         double By = B.getY();
 
-        String queryString = "weightFactor(" + Ax + "," + Ay + "," + Bx + ","  + By + ", Value).";
+        String queryString = "calculateCost(" + Ax + "," + Ay + "," + Bx + ","  + By + ", Value).";
         jipQuery = jip.openSynchronousQuery(parser.parseTerm(queryString));
         term = jipQuery.nextSolution();
         if (term != null) {
-            String factorString = term.getVariablesTable().get("Value").toString();
-            double factor = Double.parseDouble(factorString);
-            return factor;
+            String costString = term.getVariablesTable().get("Value").toString();
+            double cost = Double.parseDouble(costString);
+            return cost;
         } else {
             System.out.println("Error with factor calculation.");
             return -1;
