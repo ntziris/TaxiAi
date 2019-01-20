@@ -117,7 +117,8 @@ public class Input {
                         if (!graph.containsEdge(prevNode, currNode)) {
                             if (!currNode.equals(prevNode)) {
                                 DefaultWeightedEdge edge = graph.addEdge(prevNode, currNode);
-                                graph.setEdgeWeight(edge, currNode.euclid(prevNode));
+                                double proCost = prolog.calculateCost(prevNode, currNode);
+                                graph.setEdgeWeight(edge, proCost * currNode.euclid(prevNode));
                             }
                         }
                     } else {
@@ -125,7 +126,8 @@ public class Input {
                         checkForCross.put(nodeId, currNode);
                         graph.addVertex(currNode);
                         DefaultWeightedEdge edge = graph.addEdge(prevNode, currNode);
-                        graph.setEdgeWeight(edge, currNode.euclid(prevNode));
+                        double proCost = prolog.calculateCost(prevNode, currNode);
+                        graph.setEdgeWeight(edge, proCost * currNode.euclid(prevNode));
                     }
                 } else {
                     /* If node has already been found and it's an intersection* between two roads,
