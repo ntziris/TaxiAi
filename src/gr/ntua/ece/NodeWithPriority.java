@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 public class NodeWithPriority implements Comparator<NodeWithPriority>
 {
-    public Node x;
-    public double cost;
+    private Node x;
+    private double cost;
 
     NodeWithPriority() {
     }
