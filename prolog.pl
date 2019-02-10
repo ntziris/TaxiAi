@@ -17,7 +17,8 @@ isNight(Time) :-
 
 hasLights(LineId, Answer) :-
     lines(LineId, _, _, _, Answer, _, _, _, _, _, _, _, _, _, _, _, _, _).
-/*
+
+
 lightSatisfiability(LineId, LightsLevel) :-
     callTime(Time),
     isNight(Time),
@@ -25,7 +26,6 @@ lightSatisfiability(LineId, LightsLevel) :-
     LightsLevel = 0.8.
 
 lightSatisfiability(_, 1).
-*/
 
 findCongestionLevel(high, 1).
 findCongestionLevel(medium, 0.8).
@@ -46,8 +46,8 @@ calculateCost(NodeIdA, NodeIdB, Value) :-
    node(_, _, NodeIdA, LineId, _, _),
    node(_, _, NodeIdB, LineId, _, _),
    trafficBottleneck(LineId, CongestionLevel),
- %  lightSatisfiability(LineId, LightsLevel),
-    Value is CongestionLevel. % * LightsLevel.
+   lightSatisfiability(LineId, LightsLevel),
+    Value is CongestionLevel * LightsLevel.
 
 
 
