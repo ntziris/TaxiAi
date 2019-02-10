@@ -4,10 +4,12 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 
 public class Input {
@@ -15,6 +17,8 @@ public class Input {
     private Client client;
     private ArrayList<Taxi> taxis;
     private PrologSystem prolog;
+
+//    private List<String> lines;
 
     // Input as a singleton instance
     private static final Input instance = new Input();
@@ -28,6 +32,7 @@ public class Input {
 
     private Input() {
         prolog = PrologSystem.getInstance();
+//        lines = new ArrayList<>();
         readInput();
     }
 
@@ -47,6 +52,13 @@ public class Input {
         /* Set the Client.closestNodeToDest */
         Point pDest = new Point(this.client.getDestX(), this.client.getDestY());
         this.client.setClosestNodeToDest(closestNodeAt(pDest));
+
+//        try {
+//            Path file = Paths.get("facts.txt");
+//            Files.write(file, lines, Charset.forName("UTF-8"));
+//        } catch (IOException e) {
+//            System.out.println("error writing the file");
+//        }
     }
 
     private void readNodes() {
@@ -92,10 +104,12 @@ public class Input {
                 // ************************************
                 String query_nodes = "node(" + x + ", " + y + ", " + nodeId +  ", " + lineId + ", " + "StreetName" + ", " + counter + ")";
                 prolog.asserta(query_nodes);
+//                lines.add(query_nodes);
                 counter++;
 
                 String belongsTo = "belongsTo(" + nodeId + ", " + lineId + ")";
                 prolog.asserta(belongsTo);
+//                lines.add(belongsTo);
 
                 // *******************************************************
 
@@ -201,6 +215,7 @@ public class Input {
                     ", " + destY + ", " + split[4].trim().replace(":", "") + ", " + persons +
                     ", " + lang + ", " + luggage + ")";
             prolog.asserta(query_client);
+//            lines.add(query_client);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } finally {
@@ -268,6 +283,7 @@ public class Input {
                 String predicate = "taxi(" + x + ", " + y + ", " + id + ", " + split[3].trim() + ", " + capacity + ", "
                         + rating + ", " + split[7].trim() + ")";
                 prolog.asserta(predicate);
+//                lines.add(predicate);
 
                 for (String lang : languages) {
                     prolog.asserta("taxiSpeaks(" + id + ", " + lang + ")");
@@ -338,6 +354,8 @@ public class Input {
                         + busyway + ", " + toll + ")";
                 prolog.asserta(predicate);
 
+//                lines.add(predicate);
+
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -380,6 +398,7 @@ public class Input {
 
                         String predicate = "roadTraffic(" + roadId + ", " + start + ", " + end + ", " + bottleneck + ")";
                         prolog.asserta(predicate);
+//                        lines.add(predicate);
                     }
 
                 }
